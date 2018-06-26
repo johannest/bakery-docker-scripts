@@ -38,7 +38,7 @@ Dockerfile for running Gatling tests in the AWS against above server.
 </dependency>
 ```
 3. Comment out following line in the application.properties: `spring.jpa.database-platform=org.hibernate.dialect.H2Dialect`
-4. Uncomment line after `# Uncomment if using PostgreSQL`
+4. Uncomment lines after `# Uncomment if using PostgreSQL` in the application.properties
 5. `cd bakery-app-starter-flow-spring`
 6. `mvn clean install -Pproduction -DskipTests`
 7. copy docker-server and docker-db folder into root of the project

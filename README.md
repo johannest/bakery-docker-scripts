@@ -26,12 +26,22 @@ Dockerfile for running Gatling tests in the AWS against above server.
 5. Make sure you have ssh keypair setup (later your-ssh-keypair.pem)
 6. Open appropriate ports (at least 22, 5432, and 8080)
 
-### Setup Bakery app starter
+### Setup Bakery app starter to work with Postgresql
 
 1. `git clone https://github.com/vaadin/bakery-app-starter-flow-spring.git`
-2. `cd bakery-app-starter-flow-spring`
-3. `mvn clean install -Pproduction -DskipTests`
-4. copy docker-server and docker-db folder into root of the project
+2. Add postgresql jdbc driver dependency to pom.xml:
+```
+<dependency>
+   <groupId>org.postgresql</groupId>
+   <artifactId>postgresql</artifactId>
+   <version>42.1.4</version>
+</dependency>
+```
+3. Comment out following line in the application.properties: `spring.jpa.database-platform=org.hibernate.dialect.H2Dialect`
+4. Uncomment line after `# Uncomment if using PostgreSQL`
+5. `cd bakery-app-starter-flow-spring`
+6. `mvn clean install -Pproduction -DskipTests`
+7. copy docker-server and docker-db folder into root of the project
 
 ### Setup Postgresql db into first node
 
